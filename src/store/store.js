@@ -1,12 +1,28 @@
-import { configureStore } from "@reduxjs/toolkit";
-import users from "./slices/userSlices";
-import posts from "./slices/postSlices";
-import global from "./slices/makeGlobalSlices";
+// src/redux/store.js
 
-export default configureStore({
+import { configureStore } from "@reduxjs/toolkit";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+
+import authReducer from "./slices/authSlice";
+
+const authPersistConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token", "isAuthenticated"], // These keys will be persisted
+};
+
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+
+const store = configureStore({
   reducer: {
-    users,
-    posts,
-    global,
+    auth: persistedAuthReducer,
   },
 });
+
+const persistor = persistStore(store);
+
+// Give a name to the exported object before exporting as module default
+const reduxStore = { store, persistor };
+
+export default reduxStore;

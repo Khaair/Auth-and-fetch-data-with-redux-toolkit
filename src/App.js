@@ -1,14 +1,20 @@
-import MakeGlobal from "./components/MakeGlobal";
-import Post from "./components/Post";
-
 import { Provider } from "react-redux";
-import store from "./store/store";
+import LoginForm from "./auth/login";
+import reduxStore from "./store/store";
+import TokenShow from "./auth/token";
+
+// To access the store
+const store = reduxStore.store;
+
+// To access the persistor
+const persistor = reduxStore.persistor;
+console.log("persistor", persistor);
 export default function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        <MakeGlobal />
-        <Post />
+        <LoginForm />
+        <TokenShow />
       </Provider>
     </div>
   );
