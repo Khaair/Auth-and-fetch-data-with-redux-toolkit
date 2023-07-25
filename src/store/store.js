@@ -3,7 +3,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-
+import users from "./slices/userSlices";
+import posts from "./slices/postSlices";
 import authReducer from "./slices/authSlice";
 
 const authPersistConfig = {
@@ -17,6 +18,8 @@ const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    users,
+    posts,
   },
 });
 

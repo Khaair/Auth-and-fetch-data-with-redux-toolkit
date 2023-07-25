@@ -2,6 +2,7 @@ import { Provider } from "react-redux";
 import LoginForm from "./auth/login";
 import reduxStore from "./store/store";
 import TokenShow from "./auth/token";
+import Post from "./components/Post";
 
 // To access the store
 const store = reduxStore.store;
@@ -15,6 +16,7 @@ export default function App() {
       <Provider store={store}>
         <LoginForm />
         <TokenShow />
+        <Post />
       </Provider>
     </div>
   );
