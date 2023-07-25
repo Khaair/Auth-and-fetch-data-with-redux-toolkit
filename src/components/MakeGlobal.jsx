@@ -24,7 +24,7 @@ const GlobalArrayComponent = () => {
     <div>
       <h1>Global Array:</h1>
       <ul>
-        {globalArray.map((item) => (
+        {globalArray?.map((item) => (
           <li key={item.id}>{item?.title}</li>
         ))}
       </ul>
